@@ -13,9 +13,6 @@ Pod::Spec.new do |s|
   
   s.source       = { :git => "https://github.com/agassiyzh/XYOrigami.git", :commit => "d8e992972514db0a327a642f97ec5feb5aee6e59" }
   
-  s.platform     = :ios, '5.0'
-
-  
   s.source_files = 'XYOrigami/UIView+Origami.{h,m}'
   
   s.requires_arc = true
