@@ -232,7 +232,13 @@ static XYOrigamiTransitionState XY_Origami_Current_State = XYOrigamiTransitionSt
   }
 
   UIGraphicsBeginImageContext(view.frame.size);
-  [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+  if ([view respondsToSelector:@selector(contentOffset)]) {
+    CGContextTranslateCTM(ctx, 0, -[(UIScrollView *)view contentOffset].y);
+  }
+  
+  [view.layer renderInContext:ctx];
   UIImage *viewSnapShot = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
@@ -352,7 +358,13 @@ static XYOrigamiTransitionState XY_Origami_Current_State = XYOrigamiTransitionSt
   }
 
   UIGraphicsBeginImageContext(view.frame.size);
-  [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+  CGContextRef ctx = UIGraphicsGetCurrentContext();
+
+  if ([view respondsToSelector:@selector(contentOffset)]) {
+    CGContextTranslateCTM(ctx, 0, -[(UIScrollView *)view contentOffset].y);
+  }
+
+  [view.layer renderInContext:ctx];
   UIImage *viewSnapShot = UIGraphicsGetImageFromCurrentImageContext();
   UIGraphicsEndImageContext();
 
